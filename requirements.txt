@@ -1,0 +1,6 @@
+fastapi
+psycopg2
+pydantic
+python-dotenv
+sqlalchemy
+uuid
