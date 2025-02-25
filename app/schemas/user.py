@@ -7,7 +7,17 @@ class UserCreate(BaseModel):  # Used for creating users
     last_name: str
     email: EmailStr
     gender: Gender
-    roles: List[Role]
+    role: Role
+    
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate_enums
+
+    @classmethod
+    def validate_enums(cls, values):
+        values["gender"] = values["gender"].lower()
+        values["role"] = values["role"].lower()
+        return values
 
 class UserResponse(UserCreate):  # Used for returning users (includes ID)
     id: str
