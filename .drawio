@@ -1,9 +1,12 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0" version="26.0.13">
   <diagram name="Page-1" id="1h9MlOvjjE9mvNR7ryWE">
-    <mxGraphModel dx="1824" dy="1028" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1908" dy="1065" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="nr7JULkrr1C1Ja3gNZ5H-76" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;fillColor=light-dark(#EBEBEB,var(--ge-dark-color, #121212));" vertex="1" parent="1">
+          <mxGeometry x="-290" y="-90" width="1190" height="600" as="geometry" />
+        </mxCell>
         <mxCell id="nr7JULkrr1C1Ja3gNZ5H-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nr7JULkrr1C1Ja3gNZ5H-20" target="nr7JULkrr1C1Ja3gNZ5H-35">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -168,6 +171,9 @@
         </mxCell>
         <mxCell id="nr7JULkrr1C1Ja3gNZ5H-75" value="- Can see his attendance for the past month&lt;div&gt;- Can edit his information, but cannot add or remove a staff profile, even his own one.&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="-250" y="380" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nr7JULkrr1C1Ja3gNZ5H-77" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: light-dark(rgb(138, 219, 255), rgb(255, 255, 255));&quot;&gt;User management module&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="135" y="-140" width="320" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
