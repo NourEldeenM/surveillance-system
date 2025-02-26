@@ -22,3 +22,9 @@ class ValidationError(Exception):
     def __init__(self, detail: str = "Invalid input data."):
         self.detail = detail
         super().__init__(detail)
+        
+class UnauthorizedError(Exception):
+    """Raised when unauthorized request is made."""
+    def __init__(self, detail: str = "Unauthorized"):
+        self.detail = detail
+        super().__init__(detail)
