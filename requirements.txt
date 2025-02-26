@@ -3,4 +3,5 @@ psycopg2
 pydantic
 python-dotenv
 sqlalchemy
-uuid
+passlib[bcrypt]
+pyjwt
