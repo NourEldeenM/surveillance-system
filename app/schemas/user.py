@@ -6,6 +6,7 @@ class UserCreate(BaseModel):  # Used for creating users
     first_name: str
     last_name: str
     email: EmailStr
+    password: str # plain
     gender: Gender
     role: Role
     
@@ -21,6 +22,8 @@ class UserCreate(BaseModel):  # Used for creating users
 
 class UserResponse(UserCreate):  # Used for returning users (includes ID)
     id: str
-
-    class Config:
-        from_attributes = True  # Converts ORM object to Pydantic model
+    first_name: str
+    last_name: str
+    email: EmailStr
+    gender: Gender
+    role: Role

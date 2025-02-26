@@ -1,11 +1,12 @@
 from uuid import uuid4
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+from app.core.security import Security
 from app.models import user
 from app.schemas.user import UserCreate, UserResponse
 from typing import List
 import logging
-from app.utils.exceptions import DuplicateEmailError, DatabaseError, NotFoundError
+from app.utils.exceptions import DuplicateEmailError, DatabaseError, NotFoundError, UnauthorizedError
 
 # Set up logging
 logger = logging.getLogger(__name__)
@@ -15,11 +16,13 @@ class UserService:
     def create_user(user_data: UserCreate, db: Session) -> UserResponse:
         """Creates a new user"""
         try:
+            hashed_password = Security.hash_password(user_data.password)
             new_user = user.User(
                 id=str(uuid4()),
                 first_name=user_data.first_name,
                 last_name=user_data.last_name,
                 email=user_data.email,
+                password=hashed_password,
                 gender=user_data.gender,
                 role=user_data.role
             )
@@ -78,5 +81,24 @@ class UserService:
         db.commit()
         db.refresh(query_user)
         return query_user
-            
-        
+    
+    @staticmethod
+    def authenticate_user(email: str, password: str, db: Session):
+        """Authenticates user and returns access token."""
+        query_user = db.query(user.User).filter(user.User.email == email).first()
+        if not query_user or not Security.verify_password(password, query_user.password):
+            raise UnauthorizedError("Invalid email or password")
+
+        access_token = Security.create_access_token(UserService.convert_user_to_dict(query_user))
+        return {"access_token": access_token, "token_type": "bearer"}
+    
+    @staticmethod
+    def convert_user_to_dict(user: user.User):
+        return {
+            "id": user.id,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.email,
+            "gender": user.gender,
+            "role": user.role
+        }
