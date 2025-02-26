@@ -22,6 +22,10 @@ def create_user_route(user_data: UserCreate, db: Session = Depends(get_db)):
 def get_users_route(db: Session = Depends(get_db)):
     return UserService.get_users(db)
 
-# @router.get("/{id}", response_model=UserResponse)
-# def get_single_user_route(id: str, db: Session = Depends(get_db)):
-#     return UserService.get_user_by_id(id, db)
+@router.get("/{id}", response_model=UserResponse)
+def get_single_user_route(id: str, db: Session = Depends(get_db)):
+    return UserService.get_user_by_id(id, db)
+
+@router.patch("/{id}", response_model=UserResponse)
+def update_user_route(id: str, user_data: UserCreate ,db: Session = Depends(get_db)):
+    return UserService.update_user_by_id(id, user_data ,db)

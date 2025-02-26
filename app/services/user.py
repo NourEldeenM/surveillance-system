@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 class UserService:
     @staticmethod
     def create_user(user_data: UserCreate, db: Session) -> UserResponse:
+        """Creates a new user"""
         try:
             new_user = user.User(
                 id=str(uuid4()),
@@ -42,15 +43,9 @@ class UserService:
             logger.error(f"Unexpected error while creating user: {e}")
             raise DatabaseError(detail="An unexpected error occurred while creating the user.")
 
-    # @staticmethod
-    # def get_user_by_id(user_id: str, db: Session) -> UserResponse:
-    #     user = db.query(user.User).filter(user.User.id == user_id).first()
-    #     if not user:
-    #         raise NotFoundError(resource="User", identifier=user_id)
-    #     return user
-
     @staticmethod
     def get_users(db: Session) -> List[UserResponse]:
+        """Gets all users in the database"""
         try:
             return db.query(user.User).all()
         except SQLAlchemyError as e:
@@ -59,3 +54,29 @@ class UserService:
         except Exception as e:
             logger.error(f"Unexpected error while fetching users: {e}")
             raise DatabaseError(detail="An unexpected error occurred while fetching users.")
+
+    @staticmethod
+    def get_user_by_id(user_id: str, db: Session) -> UserResponse:
+        """Gets a user by id"""
+        query_user = db.query(user.User).filter(user.User.id == user_id).first()
+        if not query_user:
+            raise NotFoundError(resource="User", identifier=user_id)
+        return query_user
+    
+    @staticmethod
+    def update_user_by_id(user_id: str, user_data: UserCreate ,db: Session) -> UserResponse:
+        """Updates an existing user partially."""
+        query_user = db.query(user.User).filter(user.User.id == user_id).first()
+
+        if not query_user:
+            raise NotFoundError(resource="User", identifier=user_id)
+
+        # Update only the provided fields
+        for key, value in user_data.model_dump(exclude_unset=True).items():
+            setattr(query_user, key, value)
+
+        db.commit()
+        db.refresh(query_user)
+        return query_user
+            
+        
