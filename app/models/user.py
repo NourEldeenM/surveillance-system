@@ -1,7 +1,7 @@
 from enum import Enum
 from uuid import uuid4
-from sqlalchemy import Column, String, Enum as SQLAlchemyEnum, ARRAY
-from app.models.database import Base
+from sqlalchemy import Column, String, Enum as SQLAlchemyEnum
+from app.core.database import Base
 
 class Gender(str, Enum):
     male = "MALE"

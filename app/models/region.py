@@ -1,9 +1,7 @@
-from typing import List
 from uuid import uuid4
-from sqlalchemy import JSON, Column, String
-from sqlalchemy.orm import relationship, Mapped
-from app.models.branch import Branch
-from app.models.database import Base
+from sqlalchemy import JSON, Column, ForeignKey, String
+from sqlalchemy.orm import relationship
+from app.core.database import Base
 from pydantic import BaseModel
 import pycountry
 
@@ -32,5 +30,8 @@ class Region(Base):
     __tablename__ = "regions"
 
     id = Column(String, primary_key=True, index=True, default=lambda: str(uuid4()))
+    admin_id = Column(String, ForeignKey('admins.id'), index=True)
     region_location = Column(JSON, nullable=False)
-    branches: Mapped[List["Branch"]] = relationship(back_populates="region")
+    
+    branches = relationship('Branch', back_populates='region')
+    admin = relationship('Admin', back_populates='regions')

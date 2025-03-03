@@ -1,14 +1,18 @@
-from typing import List
 from uuid import uuid4
-from sqlalchemy import Column, String
-from app.models.database import Base
-from app.models.user import User
-from sqlalchemy.orm import relationship, Mapped
+from sqlalchemy import Column, ForeignKey, String
+from app.core.database import Base
+from sqlalchemy.orm import relationship
 
 class Branch(Base):
     __tablename__ = "branches"
 
-    id = Column(String, primary_key=True, index=True, default=lambda: str(uuid4()))
-    address = Column(String, index=True)
+    id = Column(String(36), primary_key=True, index=True, default=lambda: str(uuid4()))
+    region_id = Column(ForeignKey('regions.id'), index=True)
+    branch_admin_id = Column(String, ForeignKey('branch_admins.id'), index=True)
+    address = Column(String)
     postal_code = Column(String, index=True)
-    staff: Mapped[List["User"]] = relationship(back_populates="branch")
+    
+    region = relationship('Region', back_populates='branches')
+    branch_admin = relationship('BranchAdmin', back_populates='branches')
+    staff = relationship('Staff', back_populates='branches')
+    # staff = relationship('Staff', 'branch') # should add in table class Staff attribute 
