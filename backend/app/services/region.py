@@ -25,7 +25,6 @@ class RegionService:
             region = Region(
                 id=str(uuid4()),
                 region_location=location.model_dump(),
-                branches=[]
             )
             db.add(region)
             db.commit()
