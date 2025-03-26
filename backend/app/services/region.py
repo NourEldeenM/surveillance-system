@@ -58,3 +58,19 @@ class RegionService:
         # convert json back to pydantic model
         region.region_location = RegionLocation(**region.region_location)
         return region
+    
+    @staticmethod
+    def update_region_by_id(region_id: str, region_data: RegionCreate ,db: Session) -> RegionResponse:
+        """Updates an existing region partially."""
+        query_region = db.query(Region).filter(Region.id == region_id).first()
+
+        if not query_region:
+            raise NotFoundError(resource="Region", identifier=region_id)
+
+        # Update only the provided fields
+        for key, value in region_data.model_dump(exclude_unset=True).items():
+            setattr(query_region, key, value)
+
+        db.commit()
+        db.refresh(query_region)
+        return query_region
