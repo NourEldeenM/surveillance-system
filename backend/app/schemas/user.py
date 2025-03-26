@@ -1,5 +1,5 @@
+from os import strerror
 from pydantic import BaseModel, EmailStr
-from typing import List
 from app.models.user import Gender, Role
 
 class UserCreate(BaseModel):  # Used for creating users
@@ -9,6 +9,7 @@ class UserCreate(BaseModel):  # Used for creating users
     password: str # plain
     gender: Gender
     role: Role
+    profile_picture: str
     
     @classmethod
     def __get_validators__(cls):
@@ -27,3 +28,4 @@ class UserResponse(UserCreate):  # Used for returning users (includes ID)
     email: EmailStr
     gender: Gender
     role: Role
+    profile_picture: str

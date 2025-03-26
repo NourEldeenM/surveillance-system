@@ -23,3 +23,4 @@ class User(Base):
     password = Column(String, nullable=False) # hashed
     gender = Column(SQLAlchemyEnum(Gender), nullable=False)
     role = Column(SQLAlchemyEnum(Role), nullable=False)
+    profile_picture = Column(String)

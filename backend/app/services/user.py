@@ -93,6 +93,13 @@ class UserService:
         return {"access_token": access_token, "token_type": "bearer"}
     
     @staticmethod
+    def delete_user(id: str, db: Session):
+        query_user = UserService.get_user_by_id(id, db)
+        db.delete(query_user)
+        db.commit()
+        return {"message": f"User with ID {id} has been deleted"}
+    
+    @staticmethod
     def convert_user_to_dict(user: user.User):
         return {
             "id": user.id,

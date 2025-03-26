@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.core.database import SessionLocal
@@ -17,3 +18,7 @@ def get_db():
 @router.post("", response_model=RegionResponse)
 def create_region_route(region_data: RegionCreate, db: Session = Depends(get_db)):
     return RegionService.create_region(region_data, db)
+
+@router.get("", response_model=List[RegionResponse])
+def get_all_regions_route(db: Session = Depends(get_db)):
+    return RegionService.get_all_regions(db)

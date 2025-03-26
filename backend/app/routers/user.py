@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.database import SessionLocal
 from app.schemas.user import UserCreate, UserResponse
 from app.services.user import UserService
+from backend.app.schemas.utils import MessageResponse
 
 router = APIRouter()
 
@@ -29,3 +30,7 @@ def get_single_user_route(id: str, db: Session = Depends(get_db)):
 @router.patch("/{id}", response_model=UserResponse)
 def update_user_route(id: str, user_data: UserCreate ,db: Session = Depends(get_db)):
     return UserService.update_user_by_id(id, user_data ,db)
+
+@router.delete("/{id}", response_model=MessageResponse)
+def delete_user_route(id: str, db: Session = Depends(get_db)):
+    return UserService.delete_user(id, db)

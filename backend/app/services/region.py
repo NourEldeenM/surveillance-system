@@ -1,12 +1,9 @@
 from uuid import uuid4
 from sqlalchemy.orm import Session
-from traitlets import This
 from app.schemas.region import RegionCreate, RegionResponse
 from app.models.region import RegionLocation,  Region
 from uuid import uuid4
 from sqlalchemy.orm import Session
-from app.schemas.branch import BranchCreate, BranchResponse
-from app.models.branch import Branch
 from uuid import uuid4
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
@@ -38,6 +35,18 @@ class RegionService:
             db.rollback()
             logger.error(f"Unexpected error while creating region: {e}")
             raise DatabaseError(detail="An unexpected error occurred while creating the region.")
+   
+    @staticmethod     
+    def get_all_regions(db: Session):
+        """Gets all regions in the database"""
+        try:
+            return db.query(Region).all()
+        except SQLAlchemyError as e:
+            logger.error(f"Database error while fetching regions: {e}")
+            raise DatabaseError(detail="A database error occurred while fetching regions.")
+        except Exception as e:
+            logger.error(f"Unexpected error while fetching regions: {e}")
+            raise DatabaseError(detail="An unexpected error occurred while fetching regions.")
         
     @staticmethod
     def get_region_by_id(region_id: str, db: Session):
