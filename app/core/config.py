@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
+
 class DatabaseConfig:
     DATABASE_URL: str = os.getenv("DATABASE_URL", "")
     if not DATABASE_URL:
@@ -21,3 +22,9 @@ class AuthConfig:
     if not ACCESS_TOKEN_EXPIRE_MINUTES:
         raise ValueError("ACCESS_TOKEN_EXPIRE_MINUTES is not set in environment variables or .env file!")
     
+class RedisConfig:
+    REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+    REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
+    REDIS_DB = int(os.getenv("REDIS_DB", 0))
+
+RedisConf = RedisConfig()

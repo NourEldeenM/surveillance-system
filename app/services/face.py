@@ -17,7 +17,7 @@ embeddings_dict = known_embeddings["embeddings_dict"]
 
 
 class FaceService:
-    @staticmethod    
+    @staticmethod
     def recognize_face(image_path, threshold=0.5):
         try:
             embedding_obj = DeepFace.represent(image_path, model_name=model_name, detector_backend="yolov8")[0]["embedding"]
