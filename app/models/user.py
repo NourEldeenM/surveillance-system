@@ -2,6 +2,7 @@ from enum import Enum
 from uuid import uuid4
 from sqlalchemy import Column, String, Enum as SQLAlchemyEnum
 from app.core.database import Base
+from sqlalchemy.orm import relationship
 
 class Gender(str, Enum):
     male = "MALE"
@@ -24,3 +25,5 @@ class User(Base):
     gender = Column(SQLAlchemyEnum(Gender), nullable=False)
     role = Column(SQLAlchemyEnum(Role), nullable=False)
     profile_picture = Column(String)
+
+    attendances = relationship("Attendance", back_populates="employee")
