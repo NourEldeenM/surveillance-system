@@ -1,16 +1,18 @@
 from enum import Enum
 from uuid import uuid4
-from sqlalchemy import Column, String, Enum as SQLAlchemyEnum, ARRAY
-from app.database import Base
+from sqlalchemy import Column, String, Enum as SQLAlchemyEnum
+from app.core.database import Base
+from sqlalchemy.orm import relationship
 
 class Gender(str, Enum):
-    male = "male"
-    female = "female"
+    male = "MALE"
+    female = "FEMALE"
 
 class Role(str, Enum):
-    super_user = "super_user"
-    admin = "admin"
-    staff = "staff"
+    super_user = "SUPER_USER"
+    admin = "ADMIN"
+    branch_admin = "BRANCH_ADMIN"
+    staff = "STAFF"
 
 class User(Base):
     __tablename__ = "users"
@@ -19,5 +21,9 @@ class User(Base):
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
     email = Column(String, unique=True, index=True)
+    password = Column(String, nullable=False) # hashed
     gender = Column(SQLAlchemyEnum(Gender), nullable=False)
-    roles = Column(ARRAY(SQLAlchemyEnum(Role)), nullable=False)
+    role = Column(SQLAlchemyEnum(Role), nullable=False)
+    profile_picture = Column(String)
+
+    attendances = relationship("Attendance", back_populates="employee")
