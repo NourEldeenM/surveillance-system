@@ -171,3 +171,7 @@ cython_debug/
 .pypirc
 
 .vscode
+
+/app/assets/tracking_model.pt
+/app/tracker_results
+/app/output.mp4
