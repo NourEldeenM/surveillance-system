@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 from app.core.config import TRACKING
-from app.core.redis import redis_client  # if you plan to cache tracking results
+# from app.core.redis import redis_client  # if you plan to cache tracking results
 from app.utils.exceptions import DatabaseError, NotFoundError
 
 logger = logging.getLogger(__name__)
@@ -180,76 +180,76 @@ class TrackingService:
         except Exception as e:
             logger.error(f"Error saving tracking results to CSV: {e}")
             raise e
-    @staticmethod
-    def cache_tracking_results(video_path: str):
-        """
-        Cache tracking results in Redis.
-        """
-        try:
-            # Retrieve tracking results
-            results = TrackingService.get_tracking_results(video_path)
-            if not results:
-                raise NotFoundError("No tracking results found.")
+    # @staticmethod
+    # def cache_tracking_results(video_path: str):
+    #     """
+    #     Cache tracking results in Redis.
+    #     """
+    #     try:
+    #         # Retrieve tracking results
+    #         results = TrackingService.get_tracking_results(video_path)
+    #         if not results:
+    #             raise NotFoundError("No tracking results found.")
 
-            # Cache the results in Redis
-            redis_key = f"tracking:{os.path.basename(video_path)}"
-            redis_client.set(redis_key, str(results))
-            return {"message": "Tracking results cached", "redis_key": redis_key}
-        except Exception as e:
-            logger.error(f"Error caching tracking results: {e}")
-            raise e
-    @staticmethod
-    def retrieve_cached_tracking_results(redis_key: str):
-        """
-        Retrieve cached tracking results from Redis.
-        """
-        try:
-            # Retrieve the cached results from Redis
-            cached_results = redis_client.get(redis_key)
-            if not cached_results:
-                raise NotFoundError("No cached tracking results found.")
-            return eval(cached_results)  # Convert string back to list of dicts
-        except Exception as e:
-            logger.error(f"Error retrieving cached tracking results: {e}")
-            raise e
-    @staticmethod
-    def delete_cached_tracking_results(redis_key: str):
-        """
-        Delete cached tracking results from Redis.
-        """
-        try:
-            # Delete the cached results from Redis
-            redis_client.delete(redis_key)
-            return {"message": "Cached tracking results deleted"}
-        except Exception as e:
-            logger.error(f"Error deleting cached tracking results: {e}")
-            raise e
-    @staticmethod
-    def get_tracking_results_from_redis(redis_key: str):
-        """
-        Retrieve tracking results from Redis.
-        """
-        try:
-            # Check if the tracking results are cached in Redis
-            cached_results = redis_client.get(redis_key)
-            if not cached_results:
-                raise NotFoundError("No cached tracking results found.")
-            return eval(cached_results)  # Convert string back to list of dicts
-        except Exception as e:
-            logger.error(f"Error retrieving tracking results from Redis: {e}")
-            raise e
-    @staticmethod
-    def clear_tracking_cache():
-        """
-        Clear all cached tracking results from Redis.
-        """
-        try:
-            # Clear all cached tracking results
-            redis_client.flushdb()
-            return {"message": "All cached tracking results cleared"}
-        except Exception as e:
-            logger.error(f"Error clearing tracking cache: {e}")
-            raise e
+    #         # Cache the results in Redis
+    #         redis_key = f"tracking:{os.path.basename(video_path)}"
+    #         redis_client.set(redis_key, str(results))
+    #         return {"message": "Tracking results cached", "redis_key": redis_key}
+    #     except Exception as e:
+    #         logger.error(f"Error caching tracking results: {e}")
+    #         raise e
+    # @staticmethod
+    # def retrieve_cached_tracking_results(redis_key: str):
+    #     """
+    #     Retrieve cached tracking results from Redis.
+    #     """
+    #     try:
+    #         # Retrieve the cached results from Redis
+    #         cached_results = redis_client.get(redis_key)
+    #         if not cached_results:
+    #             raise NotFoundError("No cached tracking results found.")
+    #         return eval(cached_results)  # Convert string back to list of dicts
+    #     except Exception as e:
+    #         logger.error(f"Error retrieving cached tracking results: {e}")
+    #         raise e
+    # @staticmethod
+    # def delete_cached_tracking_results(redis_key: str):
+    #     """
+    #     Delete cached tracking results from Redis.
+    #     """
+    #     try:
+    #         # Delete the cached results from Redis
+    #         redis_client.delete(redis_key)
+    #         return {"message": "Cached tracking results deleted"}
+    #     except Exception as e:
+    #         logger.error(f"Error deleting cached tracking results: {e}")
+    #         raise e
+    # @staticmethod
+    # def get_tracking_results_from_redis(redis_key: str):
+    #     """
+    #     Retrieve tracking results from Redis.
+    #     """
+    #     try:
+    #         # Check if the tracking results are cached in Redis
+    #         cached_results = redis_client.get(redis_key)
+    #         if not cached_results:
+    #             raise NotFoundError("No cached tracking results found.")
+    #         return eval(cached_results)  # Convert string back to list of dicts
+    #     except Exception as e:
+    #         logger.error(f"Error retrieving tracking results from Redis: {e}")
+    #         raise e
+    # @staticmethod
+    # def clear_tracking_cache():
+    #     """
+    #     Clear all cached tracking results from Redis.
+    #     """
+    #     try:
+    #         # Clear all cached tracking results
+    #         redis_client.flushdb()
+    #         return {"message": "All cached tracking results cleared"}
+    #     except Exception as e:
+    #         logger.error(f"Error clearing tracking cache: {e}")
+    #         raise e
     @staticmethod
     def get_tracking_model_info():
         """
