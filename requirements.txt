@@ -7,3 +7,5 @@ passlib[bcrypt]
 pyjwt
 pycountry
 redis
+pybind11
+numpy==1.26.0
