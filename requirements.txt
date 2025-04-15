@@ -3,4 +3,9 @@ psycopg2
 pydantic
 python-dotenv
 sqlalchemy
-uuid
+passlib[bcrypt]
+pyjwt
+pycountry
+redis
+pybind11
+numpy==1.26.0

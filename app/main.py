@@ -1,43 +1,24 @@
-from uuid import uuid4
-from fastapi import FastAPI, Depends, HTTPException
-from sqlalchemy.orm import Session
-from app.models import user
-from app.database import SessionLocal
-from app.schemas.user import UserCreate, UserResponse
-from sqlalchemy.exc import IntegrityError
+from fastapi import FastAPI
+from app.routers.user import router as users_router
+from app.routers.auth import router as auth_router
+from app.routers.branch import router as branch_router
+from app.routers.region import router as region_router
+from app.utils.register_exception_handlers import register_exception_handlers
+from app.routers.face import router as face_router
+# from app.routers.analytics import router as analytics_router
+from app.routers.tracking import router as tracking_router
+from app.routers.integration import router as integration_router
 
 app = FastAPI()
 
-# Dependency to get DB session
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+register_exception_handlers(app)
 
-@app.post("/users/", response_model=UserResponse)  # Response uses Pydantic model
-def create_user(user_data: UserCreate, db: Session = Depends(get_db)):
-    try:
-        new_user = user.User(
-            id=str(uuid4()),
-            first_name=user_data.first_name,
-            last_name=user_data.last_name,
-            email=user_data.email,
-            gender=user_data.gender,
-            roles=user_data.roles
-        )
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
-        return new_user
-    except IntegrityError:
-        db.rollback()  # Rollback the transaction to keep DB consistent
-        raise HTTPException(status_code=400, detail="Email already exists")
-    except Exception as e:
-        db.rollback()  # Ensure rollback for any unexpected errors
-        raise HTTPException(status_code=500, detail=f"An unexpected error occurred:\n{e}")
-    
-@app.get("/users/", response_model=list[UserResponse])
-def get_users(db: Session = Depends(get_db)):
-    return db.query(user.User).all()  # Returns list of UserResponse
+# routes
+app.include_router(users_router, prefix="/users", tags=["Users"])
+app.include_router(auth_router, prefix="", tags=["Auth"])
+app.include_router(region_router, prefix="/regions", tags=["Regions"])
+app.include_router(branch_router, prefix="/branches", tags=["Branches"])
+app.include_router(face_router, prefix="/models/face", tags=["Models"])
+# app.include_router(analytics_router, prefix="/analytics", tags=["Analytics"])
+app.include_router(tracking_router, prefix="/models/tracking", tags=["Models"])
+app.include_router(integration_router, prefix="/models/integration", tags=["Models"])
