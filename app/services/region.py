@@ -1,14 +1,14 @@
 from uuid import uuid4
 from sqlalchemy.orm import Session
-from app.schemas.region import RegionCreate, RegionResponse
-from app.models.region import RegionLocation,  Region
+from schemas.region import RegionCreate, RegionResponse
+from models.region import RegionLocation,  Region
 from uuid import uuid4
 from sqlalchemy.orm import Session
 from uuid import uuid4
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 import logging
-from app.utils.exceptions import DatabaseError, NotFoundError
+from utils.exceptions import DatabaseError, NotFoundError
 
 logger = logging.getLogger(__name__)
 

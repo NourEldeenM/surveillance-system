@@ -1,6 +1,6 @@
 from os import strerror
 from pydantic import BaseModel, EmailStr
-from app.models.user import Gender, Role
+from models.user import Gender, Role
 
 class UserCreate(BaseModel):  # Used for creating users
     first_name: str

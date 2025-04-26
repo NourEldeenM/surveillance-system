@@ -1,7 +1,7 @@
 from uuid import uuid4
 from sqlalchemy import JSON, Column, ForeignKey, String
 from sqlalchemy.orm import relationship
-from app.core.database import Base
+from core.database import Base
 from pydantic import BaseModel
 import pycountry
 

@@ -1,7 +1,7 @@
 import os
 import tempfile
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from app.services.integration import IntegrationService
+from services.integration import IntegrationService
 
 router = APIRouter()
 

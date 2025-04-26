@@ -1,8 +1,8 @@
 # from fastapi import APIRouter, HTTPException, Depends
 # from sqlalchemy.orm import Session
-# from app.services.analytics import AnalyticsService
-# from app.core.database import SessionLocal
-# from app.schemas.analytics import VisitorLogCreate, VisitorLogResponse, AttendanceCreate, AttendanceResponse
+# from services.analytics import AnalyticsService
+# from core.database import SessionLocal
+# from schemas.analytics import VisitorLogCreate, VisitorLogResponse, AttendanceCreate, AttendanceResponse
 # import datetime
 
 # router = APIRouter(prefix="/analytics", tags=["analytics"])

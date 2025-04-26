@@ -1,6 +1,6 @@
 from uuid import uuid4
 from sqlalchemy import Column, ForeignKey, String
-from app.core.database import Base
+from core.database import Base
 from sqlalchemy.orm import relationship
 
 class Branch(Base):

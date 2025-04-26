@@ -1,9 +1,9 @@
 from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.schemas.region import RegionCreate, RegionResponse
-from app.services.region import RegionService
+from core.database import SessionLocal
+from schemas.region import RegionCreate, RegionResponse
+from services.region import RegionService
 
 router = APIRouter()
 

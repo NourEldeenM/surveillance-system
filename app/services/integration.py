@@ -4,8 +4,8 @@ import pandas as pd
 import tempfile
 import logging
 
-from app.services.tracking import TrackingService
-from app.services.face import FaceService  # adjust import based on your project structure
+from services.tracking import TrackingService
+from services.face import FaceService  # adjust import based on your project structure
 
 logger = logging.getLogger(__name__)
 

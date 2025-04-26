@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.database import SessionLocal
-from app.schemas.branch import BranchCreate, BranchResponse
-from app.services.branch import BranchService
+from core.database import SessionLocal
+from schemas.branch import BranchCreate, BranchResponse
+from services.branch import BranchService
 
 router = APIRouter()
 

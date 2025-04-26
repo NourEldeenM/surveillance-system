@@ -1,12 +1,12 @@
 from uuid import uuid4
 from sqlalchemy.orm import Session
-from app.schemas.branch import BranchCreate, BranchResponse
-from app.models.branch import Branch
+from schemas.branch import BranchCreate, BranchResponse
+from models.branch import Branch
 from uuid import uuid4
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 import logging
-from app.utils.exceptions import DatabaseError
+from utils.exceptions import DatabaseError
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, HTTPException
 import tempfile
-from app.core.database import SessionLocal
-from app.services.face import FaceService
+from core.database import SessionLocal
+from services.face import FaceService
 
 router = APIRouter()
 
@@ -16,9 +16,13 @@ def get_db():
 @router.post("/recognize")
 async def recognize(file: UploadFile = File(...)):
     """Endpoint to recognize a face from an uploaded image"""
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
-        temp_file.write(await file.read())
-        temp_path = temp_file.name
-        
-    result = FaceService.recognize_face(temp_path)
-    return result
+    try:
+        # Save temp image
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
+            temp_file.write(await file.read())
+            temp_path = temp_file.name
+
+        result = FaceService.recognize_face(temp_path)
+        return {"label": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
