@@ -1,7 +1,7 @@
 # import datetime
 # from sqlalchemy.orm import Session
-# from app.models.analytics import VisitorLog, Attendance
-# from app.core.redis import redis_client
+# from models.analytics import VisitorLog, Attendance
+# from core.redis import redis_client
 
 # class AnalyticsService:
 #     @staticmethod

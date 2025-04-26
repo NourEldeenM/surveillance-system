@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
-from app.core.config import AuthConfig
+from core.config import AuthConfig
 import jwt
 from jwt.exceptions import InvalidTokenError
-from app.utils.exceptions import UnauthorizedError
+from utils.exceptions import UnauthorizedError
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

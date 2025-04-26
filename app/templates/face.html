@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fawry Surveillance • Face Recognition</title>
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-container">
+        <img src="../static/images/Fawry.png" alt="Fawry Logo" class="logo-img" />
+        <h1 class="logo-text">Surveillance</h1>
+      </div>
+      <nav>
+        <a href="/">Integration</a>
+        <a href="/face">Face Recognition</a>
+        <a href="/tracking">Object Tracking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="upload-card">
+      <h2>Face Recognition</h2>
+      <p>Upload an image to identify the person.</p>
+
+      <form id="faceForm" enctype="multipart/form-data">
+        <label for="faceInput" class="file-input-label">
+          <input type="file" id="faceInput" name="file" accept="image/*" required>
+          <span>Select an image…</span>
+        </label>
+
+        <button type="submit" class="btn" id="faceBtn">
+          <span>Recognize Face</span>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/>
+          </svg>
+        </button>
+      </form>
+
+      <div id="faceResponse" class="response"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2025 Fawry Surveillance
+    </div>
+  </footer>
+
+  <script src="../static/js/face.js"></script>
+</body>
+</html>

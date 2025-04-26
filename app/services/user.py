@@ -1,12 +1,12 @@
 from uuid import uuid4
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-from app.core.security import Security
-from app.models import user
-from app.schemas.user import UserCreate, UserResponse
+from core.security import Security
+from models import user
+from schemas.user import UserCreate, UserResponse
 from typing import List
 import logging
-from app.utils.exceptions import DuplicateEmailError, DatabaseError, NotFoundError, UnauthorizedError
+from utils.exceptions import DuplicateEmailError, DatabaseError, NotFoundError, UnauthorizedError
 
 # Set up logging
 logger = logging.getLogger(__name__)

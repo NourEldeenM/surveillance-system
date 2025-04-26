@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fawry Surveillance • Object Tracking</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-container">
+        <img src="/static/images/Fawry.png" alt="Fawry Logo" class="logo-img" />
+        <h1 class="logo-text">Surveillance</h1>
+      </div>
+      <nav>
+        <a href="/">Integration</a>
+        <a href="/face">Face Recognition</a>
+        <a href="/tracking">Object Tracking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="upload-card">
+      <h2>Object Tracking</h2>
+      <p>Upload a video to track objects in real time.</p>
+      <form id="trackingForm" enctype="multipart/form-data">
+        <label for="trackingInput" class="file-input-label">
+          <input type="file" id="trackingInput" name="file" accept="video/*" required>
+          <span>Select a video file…</span>
+        </label>
+        <button type="submit" class="btn" id="trackingBtn">
+          <span>Track Objects</span>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M5 3h14v2H5V3zm0 16h14v2H5v-2zm0-8h14v2H5v-2z"/>
+          </svg>
+        </button>
+      </form>
+      <div id="trackingResponse" class="response">
+        <!-- <div class="video-wrapper">
+          <video controls class="video-player">
+            <source src="/static/outputs/tmpsza_lo96_annotated.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div> -->
+      </div>
+      <!-- <h3>Test Embed</h3>
+      <video
+        id="testVideo"
+        class="video-player"
+        controls
+        src="/static/outputs/tmpsza_lo96_annotated.mp4"
+        style="width:100%; max-width:600px; margin:1rem auto; display:block;"
+      >
+        Your browser does not support HTML5 video.
+      </video> -->
+      <!-- <video controls="" src="/static/outputs/tmpnqrbd37c_annotated.mp4" class="video-player" style="width: 100%; max-width: 600px; display: block; margin: 1rem auto;"></video> -->
+      
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2025 Fawry Surveillance
+    </div>
+  </footer>
+
+  <script src="/static/js/tracking.js"></script>
+</body>
+</html>

@@ -7,10 +7,11 @@ import csv
 import configparser
 import numpy as np
 import pandas as pd
+import shutil
 
-from app.core.config import TRACKING
-# from app.core.redis import redis_client  # if you plan to cache tracking results
-from app.utils.exceptions import DatabaseError, NotFoundError
+from core.config import TRACKING
+# from core.redis import redis_client  # if you plan to cache tracking results
+from utils.exceptions import DatabaseError, NotFoundError
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,8 @@ class Tracker:
         
         # Setup VideoWriter using video metadata
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        # fourcc = cv2.VideoWriter_fourcc(*'avc1')  # H.264 in MP4 container
+        # output_path = output_path.replace('.mp4', '_annotated.mp4')
         out = cv2.VideoWriter(output_path, fourcc, frame_rate, (imWidth, imHeight))
         
         # Prepare predictions list and a file to save predictions
@@ -107,8 +110,19 @@ class TrackingService:
         try:
             tracker = Tracker(model_path=TRACKING.TRACKING_MODEL_PATH)
             prediction_file = tracker.track_video(video_path, output_path)
+
+            # outputs_dir = os.path.join(os.getcwd(), "static", "outputs")
+            outputs_dir = os.path.join(os.getcwd(), "static", "outputs")
+            os.makedirs(outputs_dir, exist_ok=True)
+            filename = os.path.basename(output_path)
+            dest = os.path.join(outputs_dir, filename)
+            # Move the output video to the static outputs directory without using shutil functions
+            shutil.copy(output_path, dest)
+
+            url = f"/static/outputs/{filename}"
+
             # Optionally, you can cache or record results in Redis here.
-            return {"message": "Tracking completed", "output": output_path, "predictions": prediction_file}
+            return {"message": "Tracking completed", "output": url, "predictions": prediction_file}
         except Exception as e:
             logger.error(f"Error processing tracking: {e}")
             raise e

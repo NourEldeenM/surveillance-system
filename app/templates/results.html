@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fawry Surveillance • Integration Results</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+          <div class="logo-container">
+            <img src="/static/images/Fawry.png" alt="Fawry Logo" class="logo-img" />
+            <h1 class="logo-text">Surveillance</h1>
+          </div>
+          <nav>
+            <a href="/">Integration</a>
+            <a href="/face">Face Recognition</a>
+            <a href="/tracking">Object Tracking</a>
+          </nav>
+        </div>
+      </header>
+
+  <main class="container">
+    <section class="results-card">
+      <h2>Processing Results</h2>
+      <div class="video-wrapper">
+        <video id="annotatedVideo" controls></video>
+      </div>
+      <h3>Detections by Frame</h3>
+      <div class="table-wrapper">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>Frame</th>
+              <th>Tracked ID</th>
+              <th>BBox [x,y,w,h]</th>
+              <th>Confidence</th>
+              <th>Recognized As</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <button class="btn" id="backBtn">← New Upload</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2025 Fawry Surveillance
+    </div>
+  </footer>
+
+  <script src="/static/js/results.js"></script>
+</body>
+</html>

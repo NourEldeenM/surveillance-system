@@ -1,7 +1,7 @@
 from typing import List
 from pydantic import BaseModel
-from app.models.region import RegionLocation
-from app.schemas.branch import BranchResponse
+from models.region import RegionLocation
+from schemas.branch import BranchResponse
 
 class RegionCreate(BaseModel):
     region_location: RegionLocation

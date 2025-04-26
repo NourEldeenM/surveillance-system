@@ -1,5 +1,5 @@
 # import redis
-# from app.core.config import REDIS
+# from core.config import REDIS
 
 # try:
 #     redis_client = redis.Redis(

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fawry Surveillance • Integration</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo-container">
+        <img src="/static/images/Fawry.png" alt="Fawry Logo" class="logo-img" />
+        <h1 class="logo-text">Surveillance</h1>
+      </div>
+      <nav>
+        <a href="/">Integration</a>
+        <a href="/face">Face Recognition</a>
+        <a href="/tracking">Object Tracking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="upload-card">
+      <h2>Upload Video</h2>
+      <p>Run pedestrian tracking + face recognition.</p>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <label for="fileInput" class="file-input-label">
+          <input type="file" id="fileInput" name="file" accept="video/*" required>
+          <span>Select a video file…</span>
+        </label>
+
+        <button type="submit" class="btn" id="uploadBtn">
+          <span>Upload & Process</span>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v6h4.66V9h3.84L12 2z"/>
+          </svg>
+        </button>
+      </form>
+      <div id="response" class="response"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2025 Fawry Surveillance
+    </div>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

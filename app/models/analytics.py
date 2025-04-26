@@ -1,7 +1,7 @@
 # from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 # from sqlalchemy.orm import relationship
 # from datetime import datetime
-# from app.core.database import Base
+# from core.database import Base
 
 # class VisitorLog(Base):
 #     __tablename__ = "visitor_logs"
