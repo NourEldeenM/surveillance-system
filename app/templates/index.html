@@ -4,14 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fawry Surveillance • Integration</title>
-  <link rel="stylesheet" href="../static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .file-input-label.selected {
+      border-color: #FFD600;;
+      background: rgba(255,214,0,0.1);
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-content">
       <div class="logo-container">
-        <img src="../static/images/Fawry.png" alt="Fawry Logo" class="logo-img" />
+        <img src="/static/images/Fawry.png" alt="Fawry Logo" class="logo-img" />
         <h1 class="logo-text">Surveillance</h1>
       </div>
       <nav>
@@ -40,7 +46,7 @@
           </svg>
         </button>
       </form>
-
+      <div id="response" class="response"></div>
     </section>
   </main>
 
@@ -50,6 +56,6 @@
     </div>
   </footer>
 
-  <script src="static/js/main.js"></script>
+  <script src="/static/js/main.js"></script>
 </body>
 </html>

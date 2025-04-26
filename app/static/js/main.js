@@ -1,12 +1,22 @@
-const form = document.getElementById("uploadForm");
-const responseDiv = document.getElementById("response");
-const uploadBtn   = document.getElementById("uploadBtn");
+const form      = document.getElementById("uploadForm");
+const response  = document.getElementById("response");
+const btn       = document.getElementById("uploadBtn");
+const input     = document.getElementById("fileInput");
+const label     = document.querySelector(".file-input-label[for='fileInput']");
+
+// Highlight when file chosen
+input.addEventListener("change", () => {
+  if (input.files.length) {
+    label.classList.add("selected");
+    label.querySelector("span").textContent = input.files[0].name;
+  }
+});
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  responseDiv.textContent = "";   
-  uploadBtn.disabled = true;     
-  uploadBtn.querySelector("span").textContent = "Processing…";
+  response.innerHTML = "";
+  btn.disabled = true;
+  btn.querySelector("span").textContent = "Processing…";
 
   try {
     const res = await fetch("/models/integration/video", {
@@ -18,22 +28,16 @@ form.addEventListener("submit", async (e) => {
     try { payload = JSON.parse(text); }
     catch { throw new Error(text); }
     if (!res.ok) throw new Error(payload.detail || "Processing failed");
-    responseDiv.innerHTML = `
-    <div class="video-wrapper">
-      <video controls src="${payload.annotated_video}" class="video-player"></video>
-    </div>
-  `;
 
-    // Store for results page
-    sessionStorage.setItem("annotatedVideo", payload.annotated_video);
-    sessionStorage.setItem("resultsData", JSON.stringify(payload.results));
-
-    // Redirect to results
+    // store for results page
+    sessionStorage.setItem("integration_annotated", payload.annotated_video);
+    sessionStorage.setItem("integration_results", JSON.stringify(payload.results));
     window.location.href = "/results";
+
   } catch (err) {
-    responseDiv.innerHTML = `<p class="error">⚠️ ${err.message}</p>`;
+    response.innerHTML = `<p class="error">⚠️ ${err.message}</p>`;
   } finally {
-    uploadBtn.disabled = false;
-    uploadBtn.querySelector("span").textContent = "Upload & Process";
+    btn.disabled = false;
+    btn.querySelector("span").textContent = "Upload & Process";
   }
 });

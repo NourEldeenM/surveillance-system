@@ -112,12 +112,12 @@ class TrackingService:
             prediction_file = tracker.track_video(video_path, output_path)
 
             # outputs_dir = os.path.join(os.getcwd(), "static", "outputs")
-            outputs_dir = os.path.join("app", "static", "outputs")
+            outputs_dir = os.path.join(os.getcwd(), "static", "outputs")
             os.makedirs(outputs_dir, exist_ok=True)
             filename = os.path.basename(output_path)
             dest = os.path.join(outputs_dir, filename)
             # Move the output video to the static outputs directory without using shutil functions
-            shutil.move(output_path, dest)
+            shutil.copy(output_path, dest)
 
             url = f"/static/outputs/{filename}"
 
