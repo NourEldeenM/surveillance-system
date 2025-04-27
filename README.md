@@ -55,10 +55,10 @@ surveillance-system/
 ├── app/
 │   ├── main.py              # FastAPI app + routes & static mounts
 │   ├── core/                # Config, database, security
-│   ├── models/              # SQLAlchemy models (User, VisitorLog, Attendance…)
+│   ├── models/              # SQLAlchemy models (User, Branch, Region…)
 │   ├── schemas/             # Pydantic schemas for requests/responses
-│   ├── services/            # Business logic: tracking, face, integration, analytics
-│   ├── routers/             # API routers: auth, users, face, tracking, integration, analytics
+│   ├── services/            # Business logic: tracking, face, integration
+│   ├── routers/             # API routers: auth, users, face, tracking, integration
 │   ├── templates/           # Jinja2 HTML pages (index, face, tracking, results)
 │   └── static/              # Front-end assets
 │       ├── css/style.css
