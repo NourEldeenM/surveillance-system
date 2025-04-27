@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const videoEl = document.getElementById("annotatedVideo");
+  const responseDiv = document.getElementById("trackingResponse");
   const tableBody = document.querySelector("#resultsTable tbody");
   const backBtn = document.getElementById("backBtn");
 
@@ -8,7 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Preview video
   if (videoURL) {
-    videoEl.src = videoURL;
+    // videoEl.src = videoURL;
+    responseDiv.innerHTML = `
+      <a href="${videoURL}" download class="btn">
+        <span>Download Annotated Video</span>
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v6h4.66V9h3.84L12 2z"/>
+        </svg>
+      </a>
+    `;
   }
 
   // Populate table

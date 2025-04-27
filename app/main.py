@@ -15,13 +15,7 @@ from routers.integration import router as integration_router
 
 app = FastAPI()
 
-# app.mount("/static", StaticFiles(directory="app/static"), name="static")
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# app.mount(
-#     "/static/outputs",
-#     StaticFiles(directory="static/outputs"),
-#     name="outputs"
-# )
 
 templates = Jinja2Templates(directory="templates")
 app.add_middleware(
