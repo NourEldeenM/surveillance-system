@@ -123,4 +123,3 @@ surveillance-system/
    - Embeds the annotated tracking video
 
 All pages share a **professional, responsive design** with the Fawry brand colors (yellow & blue) and logo.
-
