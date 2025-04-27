@@ -1,11 +1,11 @@
 # Fawry Surveillance System
 
-A **FastAPI**-based full-stack interface for real-time multi-object tracking and face recognition in retail surveillance video streams. Comes with:
+A **FastAPI** based full-stack interface for real-time multi-object tracking and face recognition in retail surveillance video streams. Comes with:
 
 - 🎥 **Integration Page**: run tracking + face recognition in one go
 - 🧑‍💻 **Face Recognition**: upload a staff image, identify the person
 - 🚶‍♂️ **Object Tracking**: upload a video, get an annotated tracking output
-- 💾 **Persistence**: PostgreSQL
+- 💾 **Database**: PostgreSQL
 - ⚙️ **Modular Services & Routers** for easy extension
 
 ---
