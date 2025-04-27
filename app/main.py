@@ -25,6 +25,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 @app.get("/", response_class=HTMLResponse)
 async def integration_page(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})

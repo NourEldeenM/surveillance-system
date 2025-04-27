@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Preview video
   if (videoURL) {
-    // videoEl.src = videoURL;
     responseDiv.innerHTML = `
       <a href="${videoURL}" download class="btn">
         <span>Download Annotated Video</span>
