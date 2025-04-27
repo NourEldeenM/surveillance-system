@@ -15,13 +15,7 @@ from routers.integration import router as integration_router
 
 app = FastAPI()
 
-# app.mount("/static", StaticFiles(directory="app/static"), name="static")
 app.mount("/static", StaticFiles(directory="static"), name="static")
-# app.mount(
-#     "/static/outputs",
-#     StaticFiles(directory="static/outputs"),
-#     name="outputs"
-# )
 
 templates = Jinja2Templates(directory="templates")
 app.add_middleware(
@@ -31,6 +25,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 @app.get("/", response_class=HTMLResponse)
 async def integration_page(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
