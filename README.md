@@ -5,7 +5,7 @@ A **FastAPI**-based full-stack interface for real-time multi-object tracking and
 - 🎥 **Integration Page**: run tracking + face recognition in one go
 - 🧑‍💻 **Face Recognition**: upload a staff image, identify the person
 - 🚶‍♂️ **Object Tracking**: upload a video, get an annotated tracking output
-- 💾 **Persistence & Caching**: PostgreSQL + Redis
+- 💾 **Persistence**: PostgreSQL
 - ⚙️ **Modular Services & Routers** for easy extension
 
 ---
@@ -37,10 +37,7 @@ A **FastAPI**-based full-stack interface for real-time multi-object tracking and
    SECRET_KEY=your_jwt_secret
    HASH_ALGORITHM=HS256
    ACCESS_TOKEN_EXPIRE_MINUTES=60
-   TRACKING_MODEL_PATH=/path/to/your/last.pt
-   REDIS_HOST=localhost
-   REDIS_PORT=6379
-   REDIS_DB=0
+   TRACKING_MODEL_PATH=/path/to/your/trackingModel.pt
    ```
 
 5. **Run the application**
@@ -57,7 +54,7 @@ A **FastAPI**-based full-stack interface for real-time multi-object tracking and
 surveillance-system/
 ├── app/
 │   ├── main.py              # FastAPI app + routes & static mounts
-│   ├── core/                # Config, database, security, redis setup
+│   ├── core/                # Config, database, security
 │   ├── models/              # SQLAlchemy models (User, VisitorLog, Attendance…)
 │   ├── schemas/             # Pydantic schemas for requests/responses
 │   ├── services/            # Business logic: tracking, face, integration, analytics
