@@ -2,35 +2,35 @@
 
 A **FastAPI**-based full-stack interface for real-time multi-object tracking and face recognition in retail surveillance video streams. Comes with:
 
-- 🎥 **Integration Page**: run tracking + face recognition in one go  
-- 🧑‍💻 **Face Recognition**: upload a staff image, identify the person  
-- 🚶‍♂️ **Object Tracking**: upload a video, get an annotated tracking output  
-- 💾 **Persistence & Caching**: PostgreSQL + Redis  
-- ⚙️ **Modular Services & Routers** for easy extension  
+- 🎥 **Integration Page**: run tracking + face recognition in one go
+- 🧑‍💻 **Face Recognition**: upload a staff image, identify the person
+- 🚶‍♂️ **Object Tracking**: upload a video, get an annotated tracking output
+- 💾 **Persistence & Caching**: PostgreSQL + Redis
+- ⚙️ **Modular Services & Routers** for easy extension
 
 ---
 
 ## 🚀 Quick Start
 
-1. **Clone** & enter the repo  
+1. **Clone** & enter the repo
    ```bash
    git clone https://github.com/your-org/surveillance-system.git
    cd surveillance-system
    ```
 
-2. **Create a virtual environment**  
+2. **Create a virtual environment**
    ```bash
    python -m venv .venv
    source .venv/bin/activate      # macOS/Linux
    .\.venv\Scripts\activate       # Windows PowerShell
    ```
 
-3. **Install dependencies**  
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Configure environment**  
+4. **Configure environment**
    Copy `.env.example` → `.env` and fill in:
    ```ini
    DATABASE_URL=postgresql://user:pass@localhost:5432/dbname
@@ -43,7 +43,7 @@ A **FastAPI**-based full-stack interface for real-time multi-object tracking and
    REDIS_DB=0
    ```
 
-5. **Run the application**  
+5. **Run the application**
    ```bash
    uvicorn app.main:app --reload
    ```
@@ -82,25 +82,25 @@ surveillance-system/
 ## 📄 Features & Endpoints
 
 ### 1. Integration (Tracking + Face)
-- **UI**: `GET  /`  
-- **Process**: `POST /models/integration/video`  
-- **Results**: redirects to `/results`, shows annotated video & combined detections  
+- **UI**: `GET  /`
+- **Process**: `POST /models/integration/video`
+- **Results**: redirects to `/results`, shows annotated video & combined detections
 
 ---
 
 ### 2. Face Recognition
-- **UI**: `GET  /face`  
-- **API**: `POST /models/face/recognize`  
-  - **Input**: form-file `file` (image)  
-  - **Output**: `{ "person": "<matched_name>" }`  
+- **UI**: `GET  /face`
+- **API**: `POST /models/face/recognize`
+  - **Input**: form-file `file` (image)
+  - **Output**: `{ "person": "<matched_name>" }`
 
 ---
 
 ### 3. Object Tracking
-- **UI**: `GET  /tracking`  
-- **API**: `POST /models/tracking/video`  
-  - **Input**: form-file `file` (video)  
-  - **Output**:  
+- **UI**: `GET  /tracking`
+- **API**: `POST /models/tracking/video`
+  - **Input**: form-file `file` (video)
+  - **Output**:
     ```json
     {
       "annotated_video": "/static/outputs/xyz_annotated.mp4",
@@ -112,18 +112,18 @@ surveillance-system/
 
 ## 🔧 Front-End Pages
 
-1. **Home / Integration**  
-   - Drag-and-drop or click to select a video  
-   - Yellow highlight on selection  
+1. **Home / Integration**
+   - Drag-and-drop or click to select a video
+   - Yellow highlight on selection
    - Preview results & download annotated video
 
-2. **Face Recognition**  
-   - Upload an image  
-   - Displays name of matched staff member  
+2. **Face Recognition**
+   - Upload an image
+   - Displays name of matched staff member
 
-3. **Object Tracking**  
-   - Upload a raw video  
-   - Embeds the annotated tracking video  
+3. **Object Tracking**
+   - Upload a raw video
+   - Embeds the annotated tracking video
 
 All pages share a **professional, responsive design** with the Fawry brand colors (yellow & blue) and logo.
 
